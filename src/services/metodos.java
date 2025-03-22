@@ -137,18 +137,28 @@ public class metodos {
         String tipoCredito = sc.nextLine();
 
         boolean userExiste = false;
+        boolean creditoExiste = false;
 
         for(UserModel userIterator:users){
             if (userIterator.getCedula().equals(cedula)){
                 for(CreditoModel creditoIterator:userIterator.getCreditos()){
                     if (creditoIterator.getTipo().equals(tipoCredito)){
                         userIterator.getCreditos().remove(creditoIterator);
+                        creditoExiste = true;
                         break;
+
                     }
                 }
                 userExiste = true;
                 break;
             }
         }
+        if (!userExiste){
+            System.out.println("Usuario no encontrado");
+        }
+        if (!creditoExiste && userExiste){
+            System.out.println("El usuario no tiene asociado el credito");
+        }
+        return users;
     }
 }
