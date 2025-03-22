@@ -19,7 +19,8 @@ public class Metodos {
             System.out.println("2. actualizar credito");
             System.out.println("3. vender credito");
             System.out.println("4. eliminar credito");
-            System.out.println("5. salir");
+            System.out.println("5. mostrar");
+            System.out.println("6. salir");
 
             int opt = scanner.nextInt();
             scanner.nextLine();
@@ -42,6 +43,10 @@ public class Metodos {
                     users = deleteCredito(users, scanner);
                     break;
                 case 5:
+                    System.out.println("Mostrando todo");
+                    mostrarTodo(users, creditos);
+                    break;
+                case 6:
                     System.out.println("Saliendo ....");
                     stopper = false;
                     break;
@@ -202,5 +207,18 @@ public class Metodos {
             System.out.println("El usuario no tiene asociado el credito");
         }
         return users;
+    }
+    public void mostrarTodo(Stack<UserModel> users, Stack<CreditoModel> creditos){
+        System.out.println("-------USERS--------------");
+        for(UserModel userIterator:users){
+            System.out.println(userIterator.toString());
+            System.out.println("-----------------------------");
+        }
+
+        System.out.println("-------CREDITOS--------------");
+        for(CreditoModel creditoModel:creditos){
+            System.out.println(creditoModel.toString());
+            System.out.println("-----------------------------");
+        }
     }
 }
