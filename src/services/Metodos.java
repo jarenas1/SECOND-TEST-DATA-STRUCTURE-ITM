@@ -5,9 +5,51 @@ import models.UserModel;
 
 import java.util.Scanner;
 import java.util.Stack;
-import java.util.concurrent.atomic.AtomicBoolean;
 
-public class metodos {
+public class Metodos {
+
+    public void menu(){
+    Scanner scanner = new Scanner(System.in);
+        boolean stopper = true;
+        Stack<UserModel> users = new Stack<>();
+        Stack<CreditoModel> creditos = new Stack<>();
+        while (stopper){
+            System.out.println("selecciones una opcion:");
+            System.out.println("1. crear credito");
+            System.out.println("2. actualizar credito");
+            System.out.println("3. vender credito");
+            System.out.println("4. eliminar credito");
+            System.out.println("5. salir");
+
+            int opt = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opt){
+                case 1:
+                    System.out.println("Crear credito:");
+                    creditos = createCredito(creditos, scanner);
+                    break;
+                case 2:
+                    System.out.println("Actualizar credito:");
+                    creditos = updateCredito(creditos, scanner);
+                    break;
+                case 3:
+                    System.out.println("Vender credito:");
+                    users = asignCredito(users,creditos,scanner);
+                    break;
+                case 4:
+                    System.out.println("Eliminar credito:");
+                    users = deleteCredito(users, scanner);
+                    break;
+                case 5:
+                    System.out.println("Saliendo ....");
+                    stopper = false;
+                    break;
+                default:
+                    System.out.println("INGRESE UNA OPCION EXISTENTE");
+            }
+    }
+    }
 
     Stack<UserModel> crearUsuario(Stack<UserModel> userModelStack, Scanner sc){
         System.out.println("Ingrese la ceula del usuario");
@@ -33,7 +75,7 @@ public class metodos {
         return userModelStack;
     }
 
-    Stack<CreditoModel> creditoModels(Stack<CreditoModel> creditoModels, Scanner sc){
+    Stack<CreditoModel> createCredito(Stack<CreditoModel> creditoModels, Scanner sc){
         System.out.println("Ingrese el tipo del credito");
         String tipo = sc.nextLine();
         System.out.println("Ingrese la descripcion del credito");
@@ -62,12 +104,12 @@ public class metodos {
         String tipo = sc.nextLine();
 
         //verificar que el credito no este registrado
-        boolean status = false;
+        boolean estado = false;
 
 
         for (CreditoModel credito : creditoModels) {
             if (credito.getTipo().equals(tipo)) {
-                status = true;
+                estado = true;
                 System.out.println("Ingrese el nuevo tipo de credito");
                 String newTipo = sc.nextLine();
 
@@ -79,11 +121,11 @@ public class metodos {
 
                 break;
             }
-            if (status) {
-                System.out.println("Credito actualizado");
-            } else {
-                System.out.println("Credito no encontrado");
-            }
+        }
+        if (estado) {
+            System.out.println("Credito actualizado");
+        } else {
+            System.out.println("Credito no encontrado");
         }
         return creditoModels;
     }
