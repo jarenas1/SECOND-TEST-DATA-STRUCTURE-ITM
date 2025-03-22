@@ -5,7 +5,7 @@ import java.util.Stack;
 public class UserModel {
     private String cedula;
     private String nombre;
-    Stack<CreditoModel> creditos;
+    Stack<CreditoModel> creditos =  new Stack<>();
 
     public UserModel() {
     }

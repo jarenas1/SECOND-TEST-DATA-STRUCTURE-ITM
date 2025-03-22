@@ -3,7 +3,7 @@ package models;
 public class CreditoModel {
     private String tipo;
     private String descripcion;
-
+    private int tomados;
     public CreditoModel() {
     }
 
@@ -26,6 +26,14 @@ public class CreditoModel {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public int getTomados() {
+        return tomados;
+    }
+
+    public void setTomados(int tomados) {
+        this.tomados = tomados;
     }
 
     @Override
